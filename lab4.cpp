@@ -25,10 +25,11 @@ int main()
 	tail->previous = head;
 	tail->next = NULL;
 	
-	bool quit = false;
+	bool quit;
 	int input;
 	string s_input;
-	while(quit == false){
+	while(input != 3){
+		quit = false;
 		displaymenu();
 		getline(cin,s_input);
 		input = stoi(s_input);
@@ -38,8 +39,8 @@ int main()
 			string thekeystring;
 			cout << "enter the key of the node:" << endl;
 			getline(cin,thekeystring);
-			thekey = stoi(s_input);
-			addNode(thekey, tail);
+			thekey = stoi(thekeystring);
+			tail = addNode(thekey, tail);
 		}
 		else if(input == 2)
 		{
@@ -50,11 +51,6 @@ int main()
 			quit == true;
 			cout << "quit was changed to true" <<endl;
 		}
-		else
-		{
-			cout<<"Invalid input" << endl;
-			cout << "Try another number" << endl;
-		}
 	}
 	cout <<"Goodbye!" << endl;
 }
@@ -64,6 +60,7 @@ void displaymenu()
 	cout <<"Choose one of the two" << endl;
 	cout <<"1.Insert a Node" << endl;
 	cout <<"2.Print list"<< endl;
+	cout <<"3.Quit" << endl;
 }
 
 void printList(Node *top , Node *end)
@@ -84,7 +81,5 @@ Node* addNode(int value, Node *end)
 	add->previous = end;
 	end->next = add;
 	end = add;
-	
-	cout << end->key << endl;
 	return end;
 }
